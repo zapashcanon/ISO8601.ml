@@ -322,22 +322,22 @@ module Permissive = struct
     (* FIXME: possible loss of precision. *)
     let pp_format fmt format x tz =
 
-      <span data-count="80">l</span>et open Unix in
+      <span data-count="81">l</span>et open Unix in
       let open Format in
 
       (* Be careful, do not forget to print timezone if there is one,
        * or information printed will be wrong. *)
       let x = gmtime (x -. tz) in
 
-      <span data-count="80">l</span>et conversion =
+      <span data-count="81">l</span>et conversion =
         let pad2 = fprintf fmt "%02d" in
-        <span data-count="80">l</span>et pad4 = fprintf fmt "%04d" in
-        <span data-count="80">f</span>unction
+        <span data-count="81">l</span>et pad4 = fprintf fmt "%04d" in
+        <span data-count="81">f</span>unction
 
         (* Date *)
-        | <span data-count="40">'</span>Y' -&gt; pad4 (x.tm_year + 1900)
-        | <span data-count="40">'</span>M' -&gt; pad2 (x.tm_mon + 1)
-        | <span data-count="40">'</span>D' -&gt; pad2 x.tm_mday
+        | <span data-count="41">'</span>Y' -&gt; pad4 (x.tm_year + 1900)
+        | <span data-count="41">'</span>M' -&gt; pad2 (x.tm_mon + 1)
+        | <span data-count="41">'</span>D' -&gt; pad2 x.tm_mday
 
         (* Time *)
         | <span data-count="44">'</span>h' -&gt; pad2 x.tm_hour
@@ -354,17 +354,17 @@ module Permissive = struct
       in
 
       let len = String.length format in
-      <span data-count="80">l</span>et rec parse_format i =
-        <span data-count="510">i</span>f i = len then <span data-count="80">(</span>)
-        else <span data-count="430">m</span>atch String.get format i with
-             | <span data-count="256">'</span>%' -&gt; conversion (String.ge<span data-count="256">t</span> format (i + 1)) ;
-                      <span data-count="256">p</span>arse_format (i + 2)
-             |  <span data-count="174">c</span>  -&gt; pp_print_char fmt c ;
-                      <span data-count="174">p</span>arse_format (i + 1) in
+      <span data-count="81">l</span>et rec parse_format i =
+        <span data-count="516">i</span>f i = len then <span data-count="81">(</span>)
+        else <span data-count="435">m</span>atch String.get format i with
+             | <span data-count="259">'</span>%' -&gt; conversion (String.ge<span data-count="259">t</span> format (i + 1)) ;
+                      <span data-count="259">p</span>arse_format (i + 2)
+             |  <span data-count="176">c</span>  -&gt; pp_print_char fmt c ;
+                      <span data-count="176">p</span>arse_format (i + 1) in
 
       parse_format 0
 
-    let pp_date fmt x = <span data-count="36">p</span>p_format fmt "%Y-%M-%D" x 0.
+    let pp_date fmt x = <span data-count="37">p</span>p_format fmt "%Y-%M-%D" x 0.
 
     let pp_time fmt x = <span data-count="40">p</span>p_format fmt "%h:%m:%s" x 0.
 
@@ -383,9 +383,9 @@ module Permissive = struct
       <span data-count="0">p</span>p_format fmt "%Y%M%DT%h%m%s%Z%z" x tz
 
     let string_of_aux printer x =
-      <span data-count="80">i</span>gnore (Format.flush_str_formatte<span data-count="80">r</span> ()) ;
+      <span data-count="81">i</span>gnore (Format.flush_str_formatte<span data-count="81">r</span> ()) ;
       printer Format.str_formatter x ;
-      <span data-count="80">F</span>ormat.flush_str_formatter ()
+      <span data-count="81">F</span>ormat.flush_str_formatter ()
 
     let string_of_date = string_of_au<span data-count="1">x</span> pp_date
 
